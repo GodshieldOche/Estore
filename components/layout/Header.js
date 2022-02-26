@@ -26,10 +26,10 @@ const Header = () => {
             if (!result.error) {
                 setUser(result.payload.user)
             } else {
-                console.log(error)
+                console.log(result)
             }
         })
-    }, [dispatch, loadUser])
+    }, [dispatch, user])
 
 
     const submitHandler = (e) => {

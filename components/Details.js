@@ -40,9 +40,9 @@ const Details = () => {
    
     const handleAddToCart = () => {
         dispatch(postToCart({ prodId, quantity })).then(result => {
-            setShowCart(!showCart)
             if (!result.error) {
                 const message = result.payload.message
+                dispatch(getCartItems())
                 toast.success(message)
             } else {
                 console.log(result)
