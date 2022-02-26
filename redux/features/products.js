@@ -5,10 +5,9 @@ import absoluteUrl from 'next-absolute-url'
 
 export const getAllProducts = createAsyncThunk(
     `products/getAllProducts`,
-    async ({ keyword = '', category, brand }, { rejectWithValue }) => {
-        console.log(category, brand)
-        // const {origin} = absoluteUrl(req)
-        let link = `/api?keyword=${keyword}`
+    async ({req, keyword = '', category, brand }, { rejectWithValue }) => {
+        const {origin} = absoluteUrl(req)
+        let link = `${origin}/api?keyword=${keyword}`
         if (category) {
             link = link.concat(`&category=${category}`)
         }

@@ -7,6 +7,7 @@ import ProductsList from "./products/ProductsList"
 import { TailSpin } from 'react-loader-spinner'
 import FilterListIcon from '@mui/icons-material/FilterList';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import Image from "next/image"
 
 
 
@@ -16,16 +17,7 @@ const Products = () => {
     const router =  useRouter()
     const { loading, products, message } = useSelector(state => state.products)
     
-    const { keyword } = router.query
-    const { category } = router.query
-    const { brand } = router.query
-
-    useEffect(() => { 
-       
-
-        dispatch(getAllProducts({ keyword, category, brand }))
-       
-    }, [ keyword, category, brand] )
+    const {keyword} = router.query
     
 
     return (
@@ -63,10 +55,13 @@ const Products = () => {
                                 </div>
                                 <div className="carousel-inner relative !h-full max-w-xl mx-auto overflow-hidden">
                                     <div className="carousel-item active relative float-left h-full w-full">
-                                        <img
-                                            src="https://res.cloudinary.com/drck33djn/image/upload/v1644626770/estore/products/xanwqnmm52fw36rrngtb.jpg"
+                                        <Image
+                                            src={"https://res.cloudinary.com/drck33djn/image/upload/v1644626770/estore/products/xanwqnmm52fw36rrngtb.jpg"}
                                             className="block object-cover h-full w-full"
-                                            alt="..."
+                                            alt="slide1"
+                                            layout="fill"
+                                            blurDataURL="data:..."
+                                            placeholder="blur"
                                         />
                                         <div className="carousel-caption hidden md:block absolute text-center">
                                             <h5 className="text-xl !text-gray-900 uppercase font-semibold ">Bluethooth Head Phone</h5>
@@ -74,10 +69,13 @@ const Products = () => {
                                         </div>
                                     </div>
                                     <div className="carousel-item relative float-left h-full w-full ">
-                                        <img
-                                            src="https://images.unsplash.com/photo-1605773527852-c546a8584ea3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mzl8fGxvZ2l0ZWNoJTIwbW91c2V8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60"
+                                        <Image
+                                            src={"https://res.cloudinary.com/drck33djn/image/upload/v1644829707/estore/products/e3refnkysmuf3kakjbmt.jpg"}
                                             className="block  object-cover h-full w-full"
-                                            alt="..."
+                                            alt="slide2"
+                                            layout="fill"
+                                            blurDataURL="data:..."
+                                            placeholder="blur"
                                         />
                                         <div className="carousel-caption hidden md:block absolute text-center">
                                             <h5 className="text-xl !text-gray-900 uppercase font-semibold ">Bluethooth Head Phone</h5>
@@ -85,10 +83,13 @@ const Products = () => {
                                         </div>
                                     </div>
                                     <div className="carousel-item relative float-left h-full w-full">
-                                        <img
-                                            src="https://res.cloudinary.com/drck33djn/image/upload/v1645023571/estore/products/jea4y2qpmq8j4xb5hkmy.jpg"
+                                        <Image
+                                            src={"https://res.cloudinary.com/drck33djn/image/upload/v1645023571/estore/products/jea4y2qpmq8j4xb5hkmy.jpg"}
                                             className="block  object-cover h-full w-full"
-                                            alt="..."
+                                            alt="slide3"
+                                            layout="fill"
+                                            blurDataURL="data:..."
+                                            placeholder="blur"
                                         />
                                         <div className="carousel-caption hidden md:block absolute text-center">
                                             <h5 className="text-xl !text-gray-900 uppercase font-semibold ">Bluethooth Head Phone</h5>

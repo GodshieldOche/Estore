@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import Rating from "../Rating"
+import Image from "next/image"
 
 const ProductsList = ({ product }) => {
 
@@ -14,10 +15,13 @@ const ProductsList = ({ product }) => {
     return (
         <div className="space-y-3  md:space-y-5 border border-white/30 rounded-lg p-[8px] sm:p-[10px] md:p-[12px]">
             <div className=" relative w-full h-[105px] md:h-[150px]   ">
-                <img
+                <Image
                     src={product.images[0].url}
                     alt={product.name}
                     className="rounded-lg object-cover w-full h-full"
+                    layout="fill"
+                    blurDataURL="data:..." 
+                    placeholder="blur"
                 />
             </div>
             <h1 className="tracking-wide text-[10px] sm:text-[14px]  md:text-[15px]">

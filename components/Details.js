@@ -63,35 +63,69 @@ const Details = () => {
                             <div className="hidden md:flex flex-col space-y-3">
                                 {
                                     product && product.images && product.images.map((image, index) => (
-                                        <div className={`w-[120px] h-[120px] cursor-pointer rounded-full p-2 border  ${displayImage === image.url ? "border-[#FFA801] border-2" : "border-white/60" }`} key={image.public_id}
-                                            onClick={()=> {setDisplayImage(image.url)}}
-                                        >
-                                            <img src={image.url} className="h-full w-full object-cover rounded-full" alt={image.public_id} />
+                                        <div className={`w-[120px] h-[120px] cursor-pointer rounded-full flex items-center justify-center border  ${displayImage === image.url ? "border-[#FFA801] border-2" : "border-white/60"}`} key={image.public_id}>
+                                            <div className={`w-[110px] h-[110px] relative cursor-pointer rounded-full`} 
+                                                onClick={()=> {setDisplayImage(image.url)}}
+                                            >
+                                                <Image src={image.url}
+                                                    className="h-full w-full object-cover rounded-full"
+                                                    alt={image.public_id}
+                                                    layout="fill"
+                                                    blurDataURL="data:..."
+                                                    placeholder="blur"
+                                                />
+                                            </div>
                                         </div>
                                     ))
                                 }
                             </div>
 {/* <!-- main --> */}
                             <div className="hidden md:block col-span-3">
-                                <div className=" w-full h-[600px] border border-white/60">
-                                    <img src={displayImage} className=" h-full object-cover  w-full" alt=""/>
+                                <div className="relative w-full h-[600px] border border-white/60">
+                                    {displayImage && 
+                                        <Image src={displayImage}
+                                            className=" h-full object-cover  w-full"
+                                            alt="display Image"
+                                            layout="fill"
+                                            blurDataURL="data:..."
+                                            placeholder="blur"
+                                        />
+                                    }
+                                    
                                 </div>
                             </div>
 {/* <!-- small screen --> */}
 {/* <!-- main --> */}
                             <div className="md:hidden ">
-                                <div className=" h-[250px]  w-full ">
-                                    <img src={displayImage} className=" h-full  w-full object-cover" alt=""/>
+                                <div className="relative h-[250px]  w-full ">
+                                    {displayImage && 
+                                        <Image src={displayImage}
+                                            className=" h-full  w-full object-cover"
+                                            alt="dsiplay Image"
+                                            layout="fill"
+                                            blurDataURL="data:..."
+                                            placeholder="blur"
+                                        />
+                                    }
+                                   
                                 </div>
                             </div>
 {/* <!-- preview --> */}
                             <div className="md:hidden flex flex-row items-center  space-x-3 justify-center">
                                 {
                                     product && product.images && product.images.map((image, index) => (
-                                        <div className={`w-[50px] h-[50px] rounded-full p-1 border ${displayImage === image.url ? " border-[#FFA801] border-2" : "border - white / 60"}`} key={image.public_id}
-                                            onClick={() => { setDisplayImage(image.url) }}
-                                        >
-                                            <img src={image.url} className="h-full w-full object-cover rounded-full  " alt={image.public_id}/>
+                                        <div key={image.public_id} className={`w-[60px] h-[60px] rounded-full flex items-center justify-center  border ${displayImage === image.url ? " border-[#FFA801] border-2" : "border - white / 60"}`}>
+                                            <div className={`w-[50px] h-[50px] relative rounded-full `} 
+                                                onClick={() => { setDisplayImage(image.url) }}
+                                            >
+                                                <Image src={image.url}
+                                                    className="h-full w-full object-cover rounded-full  "
+                                                    alt={image.public_id}
+                                                    layout="fill"
+                                                    blurDataURL="data:..."
+                                                    placeholder="blur"
+                                                />
+                                            </div>
                                         </div>
                                     ))
                                 }

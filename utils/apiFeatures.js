@@ -20,7 +20,6 @@ class APIFeatures {
         // remove Feilds fro query
         const removeFeilds = ['keyword']
         removeFeilds.forEach(el => delete queryCopy[el])
-        console.log(queryCopy)
         this.query = this.query.find(queryCopy)
         return this
     }
