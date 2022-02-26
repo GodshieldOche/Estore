@@ -10,7 +10,7 @@ const Home = () => {
         <div className="!mt-28 md:mt-20">
             <section>
 {/* hero */}
-                <div className="container flex flex-col flex-1 lg:flex-row items-center lg:space-x-20 lg:space-y-0 space-y-5 overflow-hidden ">
+                <div className="container flex flex-col lg:flex-1 lg:flex-row items-center lg:space-x-20 lg:space-y-0 !space-y-5 overflow-hidden ">
                     <div className=" flex flex-1 flex-col space-y-8">
                         <h3 className=" text-center text-[12px] sm:text-[18px] lg:text-base text-[#9EE9E9] tracking-custom lg:text-left leading-3"> RELIABILITY AND QUICK DELIVERY </h3>
                         <h1 className=" text-center text-[15px] sm:text-[25px] md:text-[30px] lg:text-[35px] xl:text-[40px] tracking-custom lg:text-left">
@@ -18,7 +18,7 @@ const Home = () => {
                         </h1>
                         <h4 className="text-[#9EE9E9] text-[11px] sm:text-base ml-5 tracking-custom">Scroll down</h4>
                     </div>
-                    <div className="flex flex-1 mx-w-[50px] md:!mt-14">
+                    <div className="flex lg:flex-1 mx-w-[50px] md:!mt-14">
                         <img src="/img//hero.svg" className="w-fit" alt="hero"/>
                     </div>
                 </div>
