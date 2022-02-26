@@ -12,14 +12,23 @@ import { useRouter } from 'next/router';
 
 const Header = () => {
     const [keyword, setKeyword] = useState('')
+    const [user, setUser] = useState(null)
 
     const dispatch = useDispatch()
 
-    const { loading, user } = useSelector(state => state.currentUser)
+    
+
+    // const { loading, user } = useSelector(state => state.currentUser)
     const router = useRouter()
 
     useEffect(() => {
-        dispatch(loadUser())
+        dispatch(loadUser()).then(result => {
+            if (!result.error) {
+                setUser(result.payload.user)
+            } else {
+                console.log(error)
+            }
+        })
     }, [dispatch, loadUser])
 
 
@@ -98,7 +107,7 @@ const Header = () => {
                             </Link>
                         </div>
                     }
-                    {!loading && user ?
+                    { user ?
                         (<Link href="/user/dashboard">
                             <a>
                                 <div className="flex items-center space-x-3 cursor-pointer">
@@ -145,7 +154,7 @@ const Header = () => {
                         </Link>
                     </div>
                     <div>
-                        {!loading && user ?
+                        { user ?
                             (<Link href="/user/dashboard">
                                <a>
                                     <div className=" w-[35px] h-[35px] bg-[#060404] rounded-full ">

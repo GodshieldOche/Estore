@@ -19,7 +19,7 @@ const Home = () => {
                         <h4 className="text-[#9EE9E9] text-[11px] sm:text-base ml-5 tracking-custom">Scroll down</h4>
                     </div>
                     <div className="flex flex-1 mx-w-[50px] md:!mt-14">
-                        <img src="../img//hero.svg" className="w-fit" alt="hero"/>
+                        <img src="/img//hero.svg" className="w-fit" alt="hero"/>
                     </div>
                 </div>
             </section>
