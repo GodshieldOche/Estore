@@ -27,7 +27,7 @@ const AdminDashLinks = () => {
                                 Products
                             </a>
                         </Link>
-                        <ArrowForwardIosIcon className="lg:hidden text-sm" />
+                        <ArrowForwardIosIcon className="lg:!hidden text-sm" />
                     </li>
                     <li className={`${active === '/users' ? "lg:!bg-gray-900" : "bg-none"}  flex justify-between items-center mb-2  hover:shadow hover:bg-gray-800 `}>
                         <Link href="/admin/users">
@@ -35,7 +35,7 @@ const AdminDashLinks = () => {
                                 Users
                             </a>
                         </Link>
-                        <ArrowForwardIosIcon className="lg:hidden text-sm" />
+                        <ArrowForwardIosIcon className="lg:!hidden text-sm" />
                     </li>
                     <li className={` ${active === '/orders' ? "lg:!bg-gray-900" : "bg-none"} flex justify-between items-center mb-2  hover:shadow hover:bg-gray-800`}>
                         <Link href="/admin/orders">
@@ -43,7 +43,7 @@ const AdminDashLinks = () => {
                                 Orders
                             </a>
                         </Link>
-                        <ArrowForwardIosIcon className="lg:hidden text-sm" />
+                        <ArrowForwardIosIcon className="lg:!hidden text-sm" />
                     </li>
                     <li className="flex justify-between items-center mb-2 hover:shadow hover:bg-gray-800">
                         <Link href="/admin/reviews">
@@ -51,7 +51,7 @@ const AdminDashLinks = () => {
                                 Reviews
                             </a>
                         </Link>
-                        <ArrowForwardIosIcon className="lg:hidden text-sm" />
+                        <ArrowForwardIosIcon className="lg:!hidden text-sm" />
                     </li>
 
                 </ul>

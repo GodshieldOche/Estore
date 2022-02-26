@@ -13,7 +13,7 @@ const ProductsList = ({ product }) => {
 
     return (
         <div className="space-y-3  md:space-y-5 border border-white/30 rounded-lg p-[8px] sm:p-[10px] md:p-[12px]">
-            <div className=" relative w-full h-[95px] md:h-[150px]   ">
+            <div className=" relative w-full h-[105px] md:h-[150px]   ">
                 <img
                     src={product.images[0].url}
                     alt={product.name}
@@ -29,16 +29,17 @@ const ProductsList = ({ product }) => {
                 <Rating value={product.rating} />
                 <h3 className="text-[10px] md:text-sm lg:text-base ">{`(${product.numReviews})`}</h3>
             </div>
-            <div className="flex justify-between items-center">
-                <div className="flex flex-col space-y-1">
-                    <h4 className=" text-[10px] md:text-sm text-white/70">Price</h4>
+            <div className="flex flex-col space-y-2 md:space-y-0 md:flex-row md:justify-between md:items-center">
+                <div className="flex flex-row !justify-between md:justify-start md:flex-col md:space-y-1">
+                    <h4 className=" text-xs md:text-sm text-white/70">Price</h4>
                     <h1 className=" text-xs md:text-xl">{`$${product.price.toFixed(2)}`}</h1>
                 </div>
                 <div
-                    className="border hover:bg-white hover:text-black hover:font-medium items-center border-white/70 flex rounded-3xl px-2 py-1 md:py-2 cursor-pointer ">
-                    <Link href={`/products/${product._id}`}>
-                        <a>
-                            <h1 className="text-[8px] text-center md:text-[13px] uppercase">View Details</h1>
+                    className="border  bg-white text-black hover:bg-white hover:text-black hover:font-medium !items-center
+                    border-white/70 md:bg-black md:text-white flex rounded-lg md:rounded-3xl px-2 py-1 md:py-2 cursor-pointer ">
+                    <Link href={`/products/${product._id}`} >
+                        <a className="flex w-full justify-center" >
+                            <h1 className="text-[11px] !text-center font-semibold md:text-[13px] uppercase">View Details</h1>
                         </a>
                     </Link>
                 </div>

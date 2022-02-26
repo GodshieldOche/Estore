@@ -5,6 +5,8 @@ import { useDispatch, useSelector } from "react-redux"
 import { getAllProducts } from "../redux/features/products"
 import ProductsList from "./products/ProductsList"
 import { TailSpin } from 'react-loader-spinner'
+import FilterListIcon from '@mui/icons-material/FilterList';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
 
 
@@ -14,14 +16,16 @@ const Products = () => {
     const router =  useRouter()
     const { loading, products, message } = useSelector(state => state.products)
     
-    const {keyword} = router.query
-    const {category} = router.query
+    const { keyword } = router.query
+    const { category } = router.query
+    const { brand } = router.query
 
-    useEffect(() => {
-
-        dispatch(getAllProducts({ keyword, category }))
+    useEffect(() => { 
        
-    }, [dispatch, keyword])
+
+        dispatch(getAllProducts({ keyword, category, brand }))
+       
+    }, [ keyword, category, brand] )
     
 
     return (
@@ -122,14 +126,14 @@ const Products = () => {
                     <div className="flex items-center justify-between lg:hidden ">
                         <div className="cursor-pointer">
                             <div className=" flex space-x-2 border border-white/60 rounded-lg items-center px-2 py-1">
-                                <ion-icon name="filter" className=" text-sm md:text-lg "></ion-icon>
+                                <FilterListIcon />
                                 <h3 className="text-[12px] ">FILTER</h3>
                             </div>
                         </div>
                         <div className="cursor-pointer">
                             <div className=" flex space-x-2 border border-white/60 rounded-lg items-center px-2 py-1">
                                 <h3 className="text-[12px]">TRENDING</h3>
-                                <ion-icon name="chevron-down-outline"></ion-icon>
+                                <KeyboardArrowDownIcon />
                             </div>
                         </div>
                     </div>
@@ -139,14 +143,14 @@ const Products = () => {
                         <h1 className="font-semibold text-xl cursor-pointer">ALL PRODUCTS</h1>
                         <div className="cursor-pointer">
                             <div className=" flex space-x-2 border border-white/60 rounded-lg items-center  !px-2 !py-1">
-                                <ion-icon name="filter" className="text-xl "></ion-icon>
+                                <FilterListIcon />
                                 <h3 className="text-[15px]">FILTER</h3>
                             </div>
                         </div>
                         <div className="cursor-pointer">
                             <div className=" flex space-x-2 border border-white/60 rounded-lg items-center  !px-2 !py-1">
                                 <h3 className="text-[15px]">TRENDING</h3>
-                                <ion-icon name="chevron-down-outline"></ion-icon>
+                                <KeyboardArrowDownIcon />
                             </div>
                         </div>
                     </div>

@@ -1,5 +1,6 @@
 import Product from '../models/Products'
 import cloudinary from 'cloudinary'
+import APIFeatures from '../utils/apiFeatures'
 
 
 // setting up cloudinary
@@ -74,25 +75,11 @@ const adminProducts = async (req, res, next) => {
 // get => /api/
 
 const allProducts = async (req, res, next) => {
-    const keyword = req.query.keyword ? {
-        name: {
-            $regex: req.query.keyword,
-            $options: 'i'
-        }
-    } : {}
-    
-
-    // const filter = req.query.category ? {
-    //     category: {
-    //         $regex: req.query.category,
-    //         $options: 'i'
-    //     }
-    // } : {}
-
 
     try {
-
-        const products = await Product.find({ ...keyword });
+        const apiFeatures = new APIFeatures(Product.find(), req.query).search().filter()
+        
+        let products = await apiFeatures.query
 
         res.status(200).json({
             success: true,

@@ -5,10 +5,18 @@ import absoluteUrl from 'next-absolute-url'
 
 export const getAllProducts = createAsyncThunk(
     `products/getAllProducts`,
-    async ({ keyword = ''}, { rejectWithValue }) => {
+    async ({ keyword = '', category, brand }, { rejectWithValue }) => {
+        console.log(category, brand)
         // const {origin} = absoluteUrl(req)
+        let link = `/api?keyword=${keyword}`
+        if (category) {
+            link = link.concat(`&category=${category}`)
+        }
+        if (brand) {
+            link = link.concat(`&brand=${brand}`)
+        }
         try {
-            const { data } = await axios.get(`/api?keyword=${keyword}`)
+            const { data } = await axios.get(link)
             return data
         } catch (error) {
             return rejectWithValue(error.response.data.message)
