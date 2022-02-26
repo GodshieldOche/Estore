@@ -51,7 +51,7 @@ const Pay = () => {
     const handlePay = () => {
         const email = order?.user?.email
         const amount = (order?.totalPrice * 100).toFixed(0)
-        const callback_url = `http://localhost:3000/order/${order?._id}`
+        const callback_url = `https://estore-two.vercel.app/order/${order?._id}`
 
         dispatch(postPayStack({email, amount, callback_url })).then(result => {
             if (!result.error) {
