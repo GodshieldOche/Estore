@@ -8,7 +8,7 @@ const Home = () => {
 
     const { loading, products, message } = useSelector(state => state.latestProducts)
     return (
-        <div className="md:!mt-16 !mt-20">
+        <div className="md:!mt-16 !mt-24">
             <section>
 {/* hero */}
                 <div className="container flex flex-col lg:flex-row items-center lg:space-x-20 lg:space-y-0 !space-y-5 overflow-x-hidden ">
@@ -19,8 +19,8 @@ const Home = () => {
                         </h1>
                         <h4 className="text-[#9EE9E9] text-[11px] sm:text-base ml-5 tracking-custom">Scroll down</h4>
                     </div>
-                    <div className="flex lg:flex-1 w-full lg:mx-w-[50px]">
-                        <img src="/img/In no time-bro (1).svg" className="w-fit" alt="hero"/>
+                    <div className="flex lg:flex-1 !w-full lg:mx-w-[50px]">
+                        <img src="/img/In no time-bro (1).svg" className="!w-full" alt="hero"/>
                     </div>
                 </div>
             </section>
