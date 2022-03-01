@@ -36,11 +36,9 @@ const Products = () => {
 
         if (category === "All Categories" && brand === "All Brands") {
             router.push(`/products`)
-        }
-        if (category === "All Categories") {
+        } else if (category === "All Categories") {
             router.push(`/products?brand=${brand}`)
-        }
-        if (brand === "All Brands") {
+        } else if (brand === "All Brands") {
             router.push(`/products?category=${category}`)
         } else { router.push(`/products?category=${category}&brand=${brand}`) }
         console.log(category, brand)
