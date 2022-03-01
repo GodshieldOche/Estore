@@ -23,7 +23,7 @@ const Layout = ({ children, title = "The best Ecommerce platform" }) => {
                 {/* <script src="https://cdn.tailwindcss.com"></script> */}
                 
             </Head>
-            <div className="font-Poppins bg-[#060404] text-white ">
+            <div className="font-Poppins bg-black text-white ">
                 <Header />
                 <ToastContainer position="bottom-right" />
                 {children}

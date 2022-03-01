@@ -29,7 +29,8 @@ const Products = () => {
     const path = router.asPath
  
     useEffect(() => {
-        if ( path === "/products") {
+        if (path === "/products") {
+            setFilter(!filter)
             setCategory("All Categories")
             setBrand("All Brands")
         }
