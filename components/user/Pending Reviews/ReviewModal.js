@@ -39,42 +39,42 @@ const ReviewModal = ({ handleClose, handleSubmit, item }) => {
                 </div>
                 <div className="flex w-full max-w-[250px] md:max-w-xs mx-auto items-center justify-between text-[#FFA801]">
                     {rating >= 1
-                        ? < StarIcon className="text-[50px] "
+                        ? < StarIcon className="!text-[50px] "
                             onClick={() => { setRating(0) }}
                         />
-                        : < StarOutlineIcon className="text-[50px]"
+                        : < StarOutlineIcon className="!text-[50px]"
                             onClick={() => { setRating(1)}}
                         />
                     }
                     {rating >= 2
-                        ? < StarIcon className="text-[50px] "
+                        ? < StarIcon className="!text-[50px] "
                             onClick={() => { setRating(1) }}
                         />
-                        : < StarOutlineIcon className="text-[50px]"
+                        : < StarOutlineIcon className="!text-[50px]"
                             onClick={() => { setRating(2)}}
                         />
                     }
                     {rating >= 3
-                        ? < StarIcon className="text-[50px] "
+                        ? < StarIcon className="!text-[50px] "
                             onClick={() => { setRating(2) }}
                         />
-                        : < StarOutlineIcon className="text-[50px]"
+                        : < StarOutlineIcon className="!text-[50px]"
                             onClick={() => { setRating(3)}}
                         />
                     }
                     {rating >= 4
-                        ? < StarIcon className="text-[50px] "
+                        ? < StarIcon className="!text-[50px] "
                             onClick={() => { setRating(3) }}
                         />
-                        : < StarOutlineIcon className="text-[50px]"
+                        : < StarOutlineIcon className="!text-[50px]"
                             onClick={() => { setRating(4)}}
                         />
                     }
                     {rating >= 5
-                        ? < StarIcon className="text-[50px] "
+                        ? < StarIcon className="!text-[50px] "
                             onClick={() => { setRating(4) }}
                         />
-                        : < StarOutlineIcon className="text-[50px]"
+                        : < StarOutlineIcon className="!text-[50px]"
                             onClick={() => { setRating(5)}}
                         />
                     }
