@@ -34,7 +34,7 @@ const Products = () => {
         setDropDownThree(false)
         setDropDownTwo(false)
 
-        if (category === "All Categories" & brand === "All Brands") {
+        if (category === "All Categories" && brand === "All Brands") {
             router.push(`/products`)
         }
         if (category === "All Categories") {
