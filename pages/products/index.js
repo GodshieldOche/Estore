@@ -1,6 +1,6 @@
 import Layout from "../../components/layout/Layout";
 import Products from "../../components/Products";
-import { getAllProducts } from "../../redux/features/products";
+import { getAllProducts, getFilters } from "../../redux/features/products";
 import { wrapper } from "../../redux/store";
 
 
@@ -16,4 +16,5 @@ export default function SignInPage() {
 export const getServerSideProps = wrapper.getServerSideProps(store => async ({ req, query }) => {
     const { keyword, category, brand } = query
     await store.dispatch(getAllProducts({req, keyword, category, brand}))
+    await store.dispatch(getFilters(req))
 })

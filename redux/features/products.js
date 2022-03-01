@@ -24,6 +24,20 @@ export const getAllProducts = createAsyncThunk(
     }
 )
 
+export const getFilters = createAsyncThunk(
+    `user/getFilters`,
+    async (req, { rejectWithValue }) => {
+        const { origin } = absoluteUrl(req)
+        try {
+            const { data } = await axios.get(`${origin}/api/products/filter`)
+            return data
+        } catch (error) {
+            return rejectWithValue(error.response.data.message)
+        }
+
+    }
+)
+
 
 const productsSlice = createSlice({
     name: 'products',
@@ -31,6 +45,8 @@ const productsSlice = createSlice({
         loading: false,
         products: [],
         message: null,
+        categories: [],
+        brands: []
     },
     reducers: {
 
@@ -44,6 +60,18 @@ const productsSlice = createSlice({
             state.products = payload.products
         },
         [getAllProducts.rejected]: (state, { payload }) => {
+            state.loading = false
+            state.message = payload
+        },
+        [getFilters.pending]: (state) => {
+            state.loading = true
+        },
+        [getFilters.fulfilled]: (state, { payload }) => {
+            state.loading = false
+            state.categories = payload.categories
+            state.brands = payload.brands
+        },
+        [getFilters.rejected]: (state, { payload }) => {
             state.loading = false
             state.message = payload
         },

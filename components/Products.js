@@ -2,7 +2,7 @@ import Link from "next/link"
 import { useRouter } from "next/router"
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { getAllProducts } from "../redux/features/products"
+// import { getFilters } from "../redux/features/products"
 import ProductsList from "./products/ProductsList"
 import { TailSpin } from 'react-loader-spinner'
 import FilterListIcon from '@mui/icons-material/FilterList';
@@ -25,6 +25,18 @@ const Products = () => {
     const dispatch = useDispatch()
     const router =  useRouter()
     const { loading, products, message } = useSelector(state => state.products)
+    const { categories, brands } = useSelector(state => state.products)
+    const path = router.asPath
+ 
+    useEffect(() => {
+        if ( path === "/products") {
+            setCategory("All Categories")
+            setBrand("All Brands")
+        }
+    }, [path])
+
+   
+
     
     const {keyword} = router.query
 
@@ -44,23 +56,6 @@ const Products = () => {
         console.log(category, brand)
     }
 
-    const categorys = ["All Categories"]
-    const brands = ["All Brands"]
-
-    const categoryArray = products.map(product => {
-        const inArray = categorys.find(item => item === product.category)
-        if (!inArray) {
-            categorys.push(product.category)
-        }
-        
-    })
-    const brandArray = products.map(product => {
-        const inArray = brands.find(item => item === product.brand)
-        if (!inArray) {
-            brands.push(product.brand)
-        }
-        
-    })
 
 
     return (
@@ -248,7 +243,7 @@ const Products = () => {
                                     dropDownTwo &&
                                     <div className="absolute z-30 right-0 py-2 mt-2 bg-gray-100 max-h-44 overflow-y-scroll divide-y divide-gray-400 rounded-md shadow-xl w-full" >
                                         {
-                                            categorys?.map(category => ( 
+                                            categories?.map(category => (
                                                 <a
                                                     onClick={() => { handleSubmit(category, brand)}}
                                                      key={category} className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-400 hover:text-white">

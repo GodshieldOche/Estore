@@ -241,6 +241,45 @@ const getReviews = async (req, res, next) => {
 
 }
 
+//  get Categories and  Brands
+// get => /api/products/filter
+
+const getFilterItems = async (req, res, next) => {
+
+    try {
+
+        const categories = ["All Categories"]
+        const brands = ["All Brands"]
+
+        const products = await Product.find({})
+
+        products.map(product => {
+            const inArray = categories.find(item => item === product.category)
+            if (!inArray) {
+                categories.push(product.category)
+            }
+        })
+
+        products.map(product => {
+            const inArray = brands.find(item => item === product.brand)
+            if (!inArray) {
+                brands.push(product.brand)
+            }
+
+        })
+
+
+        res.status(200).json({
+            success: true,
+            categories,
+            brands
+        })
+    } catch (error) {
+        next(error)
+    }
+
+
+}
 
 
 
@@ -253,5 +292,6 @@ export {
     getLatest,
     postReview,
     getReviews,
-    postAudio
+    postAudio,
+    getFilterItems
 }
