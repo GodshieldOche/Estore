@@ -7,18 +7,63 @@ import ProductsList from "./products/ProductsList"
 import { TailSpin } from 'react-loader-spinner'
 import FilterListIcon from '@mui/icons-material/FilterList';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import Image from "next/image"
+import { useState } from "react"
+
 
 
 
 const Products = () => {
+    const [filter, setFilter ] = useState(false)
+    const [dropDownThree, setDropDownThree ] = useState(false)
+    const [dropDownTwo, setDropDownTwo ] = useState(false)
+    const [dropDownOne, setDropDownOne ] = useState(false)
+    const [category, setCategory] = useState("All Categories")
+    const [brand, setBrand] = useState("All Brands")
 
     const dispatch = useDispatch()
     const router =  useRouter()
     const { loading, products, message } = useSelector(state => state.products)
     
     const {keyword} = router.query
-    
+
+    const handleSubmit = (category, brand) => {
+        setCategory(category)
+        setBrand(brand)
+        setDropDownThree(false)
+        setDropDownTwo(false)
+
+        if (category === "All Categories" & brand === "All Brands") {
+            router.push(`/products`)
+        }
+        if (category === "All Categories") {
+            router.push(`/products?brand=${brand}`)
+        }
+        if (brand === "All Brands") {
+            router.push(`/products?category=${category}`)
+        } else { router.push(`/products?category=${category}&brand=${brand}`) }
+        console.log(category, brand)
+    }
+
+    const categorys = ["All Categories"]
+    const brands = ["All Brands"]
+
+    const categoryArray = products.map(product => {
+        const inArray = categorys.find(item => item === product.category)
+        if (!inArray) {
+            categorys.push(product.category)
+        }
+        
+    })
+    const brandArray = products.map(product => {
+        const inArray = brands.find(item => item === product.brand)
+        if (!inArray) {
+            brands.push(product.brand)
+        }
+        
+    })
+
 
     return (
         <div>
@@ -125,37 +170,126 @@ const Products = () => {
 
                     <h1 className="text-center text-[20px] lg:hidden ">ALL PRODUCTS</h1>
                     <div className="flex items-center justify-between lg:hidden ">
-                        <div className="cursor-pointer">
+                        <div className="cursor-pointer"
+                            onClick={() => { setFilter(!filter) }}
+                        >
                             <div className=" flex space-x-2 border border-white/60 rounded-lg items-center px-2 py-1">
                                 <FilterListIcon />
                                 <h3 className="text-[12px] ">FILTER</h3>
                             </div>
                         </div>
-                        <div className="cursor-pointer">
-                            <div className=" flex space-x-2 border border-white/60 rounded-lg items-center px-2 py-1">
+                        <div className="relative cursor-pointer">
+                            <button type="button" 
+                                onClick={() => {setDropDownOne(!dropDownOne)}}
+                                className=" flex space-x-2 border border-white/60 rounded-lg items-center px-2 py-1">
                                 <h3 className="text-[12px]">TRENDING</h3>
-                                <KeyboardArrowDownIcon />
-                            </div>
+                                {dropDownOne ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
+                            </button>
+                            {
+                                dropDownOne &&
+                                <div className="absolute z-30 right-0 py-2 mt-2 bg-gray-100 divide-y divide-gray-400 rounded-md shadow-xl w-44 " >
+
+                                    <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-400 hover:text-white">
+                                        Trending
+                                    </a>
+                                    <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-400 hover:text-white">
+                                        Latest
+                                    </a>
+                                </div>
+                            }
                         </div>
                     </div>
 
 {/*  <!-- large Screens --> */}
                     <div className="hidden lg:flex items-center justify-between">
                         <h1 className="font-semibold text-xl cursor-pointer">ALL PRODUCTS</h1>
-                        <div className="cursor-pointer">
-                            <div className=" flex space-x-2 border border-white/60 rounded-lg items-center  !px-2 !py-1">
+                        <div className="cursor-pointer"
+                            onClick={() => { setFilter(!filter)}}
+                        >
+                            <div  className=" flex space-x-2 border border-white/60 rounded-lg items-center  !px-2 !py-1">
                                 <FilterListIcon />
                                 <h3 className="text-[15px]">FILTER</h3>
                             </div>
                         </div>
-                        <div className="cursor-pointer">
-                            <div className=" flex space-x-2 border border-white/60 rounded-lg items-center  !px-2 !py-1">
+                        <div className="cursor-pointer relative">
+                            
+                            <button
+                                onClick={() => { setDropDownOne(!dropDownOne) }}
+                                className=" flex space-x-2 border border-white/60 rounded-lg items-center  !px-2 !py-1">
                                 <h3 className="text-[15px]">TRENDING</h3>
-                                <KeyboardArrowDownIcon />
-                            </div>
+                                {dropDownOne ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
+                            </button >
+                            {/* <!-- Dropdown menu --> */}
+                            {
+                                dropDownOne &&
+                                <div className="absolute z-30 right-0 py-2 mt-2 bg-gray-100 divide-y divide-gray-400 rounded-md shadow-xl w-44 " >
+
+                                    <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-400 hover:text-white">
+                                        Trending
+                                    </a>
+                                    <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-400 hover:text-white">
+                                        Latest
+                                    </a>
+                                </div>
+                            }
                         </div>
                     </div>
 
+                    {
+                        filter &&
+                        <div className="flex flex-col space-y-3 md:space-y-0 max-w-lg mx-auto md:space-x-5 md:flex-row md:items-center md:justify-between">
+                            <div className="w-full relative">
+                                <button type="button"
+                                    onClick={() => { setDropDownTwo(!dropDownTwo)}}
+                                    className=" flex justify-between border border-white/60 !w-full  rounded-lg items-center pl-3  !px-2 !py-1">
+                                    <h3 className="text-[12px] md:text-[15px]">{category}</h3>
+                                    {dropDownTwo ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
+                                </button >
+                                {/* <!-- Dropdown menu --> */}
+                                {
+                                    dropDownTwo &&
+                                    <div className="absolute z-30 right-0 py-2 mt-2 bg-gray-100 max-h-44 overflow-y-scroll divide-y divide-gray-400 rounded-md shadow-xl w-full" >
+                                        {
+                                            categorys?.map(category => ( 
+                                                <a
+                                                    onClick={() => { handleSubmit(category, brand)}}
+                                                     key={category} className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-400 hover:text-white">
+                                                    {category}
+                                                </a>     
+                                            ))
+                                        }
+                                    </div>
+                                }
+                            </div>
+                            <div className="w-full relative">
+                                <button type="button"
+                                    onClick={() => { setDropDownThree(!dropDownThree) }}
+                                    className=" flex justify-between border border-white/60 !w-full  rounded-lg items-center  !px-2 !py-1">
+                                    <h3 className="text-[12px] md:text-[15px]">{brand}</h3>
+                                    {dropDownThree ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon /> }
+                                </button >
+                                {/* <!-- Dropdown menu --> */}
+                                {
+                                    dropDownThree &&
+                                    <div className="absolute z-30 right-0 py-2 mt-2 bg-gray-100 max-h-44 overflow-y-scroll divide-y divide-gray-400 rounded-md shadow-xl w-full" >
+                                        {
+                                            brands?.map(brand => (
+                                                <a onClick={() => { handleSubmit(category, brand) }}
+                                                    key={brand} className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-400 hover:text-white">
+                                                    {brand}
+                                                </a>
+                                            ))
+                                        }
+                                        
+                                        
+                                    </div>
+                                }
+                                
+                            </div>
+
+                        </div>
+                    }
+                    
 {/* <!-- Products grid --> */}
                     {loading ?
                         <div className="flex flex-col items-center justify-center">

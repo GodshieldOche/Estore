@@ -21,6 +21,24 @@ export const postProduct = createAsyncThunk(
     }
 )
 
+export const postAudio = createAsyncThunk(
+    `createProduct/postAudio`,
+    async ({audio}, { rejectWithValue }) => {
+        try {
+            const { data } = await axios.post(`/api/products/audio`, {audio}, {
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            return data
+        } catch (error) {
+            console.log(rejectWithValue(error))
+            return rejectWithValue(error.response.data.message)
+        }
+
+    }
+)
+
 
 
 const createProductSlice = createSlice({
@@ -29,6 +47,7 @@ const createProductSlice = createSlice({
         loading: false,
         product: null,
         message: null,
+        result: {},
         success: false
     },
     reducers: {
@@ -44,6 +63,17 @@ const createProductSlice = createSlice({
             state.product = payload.product
         },
         [postProduct.rejected]: (state, { payload }) => {
+            state.loading = false
+            state.message = payload
+        },
+        [postAudio.pending]: (state) => {
+            state.loading = true
+        },
+        [postAudio.fulfilled]: (state, { payload }) => {
+            state.loading = false
+            state.result = payload.result
+        },
+        [postAudio.rejected]: (state, { payload }) => {
             state.loading = false
             state.message = payload
         },

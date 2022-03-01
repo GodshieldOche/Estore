@@ -12,6 +12,30 @@ cloudinary.config({
 
 
 
+const postAudio = async (req, res, next) => {
+
+    try {
+        const audio = req.body.audio;
+
+        const result = await cloudinary.v2.uploader.upload(audio, {
+                resource_type: "auto",
+                folder: 'estore/products'
+            });
+
+            res.status(201).json({
+                success: true,
+                result
+            })
+
+
+    } catch (error) {
+        next(error)
+    }
+
+
+}
+
+
 // ADMIN Create Product
 // post => /api/products/
 
@@ -228,5 +252,6 @@ export {
     prodDetails,
     getLatest,
     postReview,
-    getReviews
+    getReviews,
+    postAudio
 }

@@ -1,7 +1,7 @@
 import Image from "next/image"
 import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { postProduct } from "../../../redux/features/createProduct"
+import { postAudio, postProduct } from "../../../redux/features/createProduct"
 import { useRouter } from 'next/router'
 
 const NewProduct = () => {
@@ -11,6 +11,9 @@ const NewProduct = () => {
     const [category, setCategory ] = useState('')
     const [brand, setBrand ] = useState('')
     const [countInStock, setCountInStock ] = useState('')
+
+
+    const [audio, setAudio ] = useState(null)
 
 
     const [images, setImages ] = useState([])
@@ -59,6 +62,14 @@ const NewProduct = () => {
             reader.readAsDataURL(file)
 
             
+        })
+    }
+
+
+    const handleAudio = (e) => {
+        e.preventDefault()
+        dispatch(postAudio({ audio })).then(result => {
+            console.log(result)
         })
     }
 

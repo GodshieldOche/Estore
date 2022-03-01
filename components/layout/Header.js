@@ -29,7 +29,7 @@ const Header = () => {
                 console.log(result)
             }
         })
-    }, [dispatch, user])
+    }, [dispatch])
 
 
     const submitHandler = (e) => {
