@@ -45,7 +45,7 @@ const Header = () => {
  
 
     return (
-        <header className="bg-[#060404] fixed top-0 left-0 right-0 z-50">
+        <header className="bg-black fixed top-0 left-0 right-0 z-50">
 
             <nav className="hidden  md:flex container items-center  mt-4 mb-2 justify-between">
 
