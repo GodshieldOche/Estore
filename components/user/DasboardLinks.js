@@ -37,7 +37,7 @@ const DasboardLinks = () => {
                                 Profile
                             </a>
                         </Link>
-                        <ArrowForwardIosIcon className="lg:hidden text-sm" />
+                        <ArrowForwardIosIcon className="lg:!hidden text-sm" />
                     </li>
 
                     <li className={`${active === '/orders' ? "lg:!bg-gray-900" : "bg-none" } flex justify-between items-center mb-2 hover:border-b lg:hover:border-b-0 border-b-white/30 hover:shadow lg:hover:bg-gray-800 `}>
@@ -46,7 +46,7 @@ const DasboardLinks = () => {
                                 Orders
                             </a>
                         </Link>
-                        <ArrowForwardIosIcon className="lg:hidden text-sm" />
+                        <ArrowForwardIosIcon className="lg:!hidden text-sm" />
                     </li>
                     <li className="flex justify-between items-center mb-2 hover:border-b lg:hover:border-b-0 border-b-white/30 hover:shadow lg:hover:bg-gray-800">
                         <Link href="/user/inbox">
@@ -54,7 +54,7 @@ const DasboardLinks = () => {
                                 Inbox
                             </a>
                         </Link>
-                        <ArrowForwardIosIcon className="lg:hidden text-sm" />
+                        <ArrowForwardIosIcon className="lg:!hidden text-sm" />
                     </li>
                     <li className={` ${active === '/reviews' ? "lg:!bg-gray-900" : "bg-none" } flex justify-between items-center mb-2 hover:border-b lg:hover:border-b-0 border-b-white/30 hover:shadow lg:hover:bg-gray-800`}>
                         <Link href="/user/reviews">
@@ -62,7 +62,7 @@ const DasboardLinks = () => {
                                 Pending Reviews
                             </a>
                         </Link>
-                        <ArrowForwardIosIcon className="lg:hidden text-sm" />
+                        <ArrowForwardIosIcon className="lg:!hidden text-sm" />
                     </li>
                    
                 </ul>

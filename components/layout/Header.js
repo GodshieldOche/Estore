@@ -23,14 +23,17 @@ const Header = () => {
     const router = useRouter()
 
     useEffect(() => {
-        dispatch(loadUser()).then(result => {
-            if (!result.error) {
-                setUser(result.payload.user)
-            } else {
-                console.log(result)
-            }
-        })
-    }, [dispatch])
+        if (!user) {
+            dispatch(loadUser()).then(result => {
+                if (!result.error) {
+                    setUser(result.payload.user)
+                } else {
+                    console.log(result)
+                }
+            })
+        }
+       
+    }, [dispatch, user])
 
 
     const submitHandler = (e) => {
