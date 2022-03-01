@@ -13,6 +13,7 @@ import { useRouter } from 'next/router';
 const Header = () => {
     const [keyword, setKeyword] = useState('')
     const [user, setUser] = useState(null)
+    const [modal, setModal] = useState(false)
 
     const dispatch = useDispatch()
 
@@ -34,6 +35,7 @@ const Header = () => {
 
     const submitHandler = (e) => {
         e.preventDefault()
+        setModal(false)
         if (keyword.trim()) {
             router.push(`/products?keyword=${keyword}`)
         } else {
@@ -144,7 +146,12 @@ const Header = () => {
                         </Link>
                     </div>
                     <div>
-                        <SearchIcon className="text-2xl text-white/70 hover:text-white cursor-pointer" />
+                        <SearchIcon className="text-2xl text-white/70 hover:text-white cursor-pointer"
+                            onClick={() => {setModal(true)}}
+                        />
+                        {
+                            modal && <Search handleClose={() => { setModal(false) }} keyword={keyword} setKeyword={setKeyword} submitHandler={submitHandler} />
+                        }
                     </div>
                     <div>
                         <Link href="/cart">

@@ -13,7 +13,7 @@ class MyDocument extends Document {
                 <Head>
                     <link rel="icon" href="../img/favicon.svg" />
                 </Head>
-                <body className="font-Poppins bg-[#060404] text-white space-y-20">
+                <body className="font-Poppins bg-black text-white space-y-20">
                     <Main />
                     <NextScript />
 

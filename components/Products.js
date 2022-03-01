@@ -21,19 +21,28 @@ const Products = () => {
     const [dropDownOne, setDropDownOne ] = useState(false)
     const [category, setCategory] = useState("All Categories")
     const [brand, setBrand] = useState("All Brands")
+    const [active, setActive] = useState(true)
 
     const dispatch = useDispatch()
     const router =  useRouter()
     const { loading, products, message } = useSelector(state => state.products)
     const { categories, brands } = useSelector(state => state.products)
     const path = router.asPath
+
  
     useEffect(() => {
         if (path === "/products") {
             setFilter(false)
+            setActive(true)
             setCategory("All Categories")
             setBrand("All Brands")
         }
+
+        if (category !== "All Categories" || brand !== "All Brands") {
+            setActive(false)
+        }
+
+        
     }, [path])
 
    
@@ -48,13 +57,22 @@ const Products = () => {
         setDropDownTwo(false)
 
         if (category === "All Categories" && brand === "All Brands") {
-            router.push(`/products`)
+            keyword
+                ? router.push(`/products?keyword=${keyword}`)
+                : router.push(`/products`)
         } else if (category === "All Categories") {
-            router.push(`/products?brand=${brand}`)
+            keyword
+                ? router.push(`${path}&brand=${brand}`)
+                : router.push(`/products?brand=${brand}`)
         } else if (brand === "All Brands") {
-            router.push(`/products?category=${category}`)
-        } else { router.push(`/products?category=${category}&brand=${brand}`) }
-        console.log(category, brand)
+            keyword
+                ? router.push(`${path}&category=${category}`)
+                : router.push(`/products?category=${category}`)
+        } else {
+            keyword
+                ? router.push(`${path}&category=${category}&brand=${brand}`)
+                : router.push(`/products?category=${category}&brand=${brand}`)
+        }
     }
 
 
@@ -66,7 +84,7 @@ const Products = () => {
                 <div className="container h-full items-center pt-5 pb-20 space-y-8 ">
                     {
                         !keyword && <>
-                            <div id="carouselExampleCaptions" className="carousel slide relative bg-gray-900 lg:!p-1 !h-[200px] sm:!h-[250px] md:!h-[300px] lg:!h-[400px] !max-w-screen-lg mx-auto" data-bs-ride="carousel">
+                            <div id="carouselExampleCaptions" className={`${active ? "block" : "hidden"} carousel slide relative bg-gray-900 lg:!p-1 !h-[200px] sm:!h-[250px] md:!h-[300px] lg:!h-[400px] !max-w-screen-lg mx-auto`} data-bs-ride="carousel">
                                 <div className="carousel-indicators absolute right-0 bottom-0 left-0 flex justify-center p-0 mb-4">
                                     <button
                                         type="button"
