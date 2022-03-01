@@ -30,7 +30,7 @@ const Products = () => {
  
     useEffect(() => {
         if (path === "/products") {
-            setFilter(!filter)
+            setFilter(false)
             setCategory("All Categories")
             setBrand("All Brands")
         }
