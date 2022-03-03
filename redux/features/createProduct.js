@@ -23,11 +23,14 @@ export const postProduct = createAsyncThunk(
 
 export const postAudio = createAsyncThunk(
     `createProduct/postAudio`,
-    async ({audio}, { rejectWithValue }) => {
+    async ({ audio }, { rejectWithValue }) => {
+        
         try {
-            const { data } = await axios.post(`/api/products/audio`, {audio}, {
+            const formData = new FormData();
+            formData.append("audio", audio)
+            const { data } = await axios.post(`/api/products/audio`, formData , {
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'multipart/form-data'
                 }
             })
             return data

@@ -124,8 +124,8 @@ const NewProduct = () => {
                                     onChange={(e) => setCategory(e.target.value)}
                                 >
                                     {
-                                        ['Supermarket', 'Health', 'Beauty', 'Home', 'Office', 'Phones', 'Tablets',
-                                            'Computing', 'Electronics', 'Fashion', 'Baby', 'Gaming', 'Sporting', 'Automobile'
+                                        ['supermarket', 'health', 'beauty', 'home', 'office', 'phones', 'tablets',
+                                            'computing', 'electronics', 'fashion', 'baby', 'gaming', 'sporting', 'automobile'
                                         ].map(category => (
                                             <option key={category} value={category}>{ category }</option>
                                         ))
@@ -192,6 +192,28 @@ const NewProduct = () => {
                     </form>
                 </div>
             </div>
+
+{/* test */}
+            {/* <form onSubmit={handleAudio} className='custom-file' encType="multipart/form-data">
+                <input
+                    type='file'
+                    name='avatar'
+                    className='custom-file-input'
+                    id='customFile'
+                    onChange={(e) => {
+                        setAudio(e.target.files[0])
+
+                       
+                    }}
+                />
+                <label className='custom-file-label' htmlFor='customFile'>
+                    Choose Music
+                </label>
+                <button id="create-audio" type='submit'
+                    className=" flex items-center bg-blue-900 justify-center py-2 px-10 cursor-pointer rounded-lg text-center">
+                    SUBMIT
+                </button>
+            </form> */}
 
         </div>
     )

@@ -7,7 +7,6 @@ module.exports = {
     CLOUDINARY_CLOUD_NAME: "drck33djn",
     CLOUDINARY_API_KEY: "994368347983446",
     CLOUDINARY_API_SECRET: "XK78MzmF_zG3aDCdgFE5FcgMKDw",
-    NEXTAUTH_URL: "http://localhost:3000/"
   },
   images: {
     domains: ['images.pexels.com', 'res.cloudinary.com'],

@@ -1,6 +1,8 @@
 import Product from '../models/Products'
 import cloudinary from 'cloudinary'
 import APIFeatures from '../utils/apiFeatures'
+import S3 from 'aws-sdk/clients/s3'
+import fs from 'fs'
 
 
 // setting up cloudinary
@@ -10,22 +12,35 @@ cloudinary.config({
     api_secret: process.env.CLOUDINARY_API_SECRET
 })
 
+const bucketName = "estore-bucket0258"
+const region = "us-east-1"
+const accessKeyID = "AKIAYG2EJPXT2EGJISBK"
+const secretAccessKey = "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"
 
+const s3 = new S3({
+    region,
+    accessKeyID,
+    secretAccessKey,
+    // credentials: creds
+})
 
 const postAudio = async (req, res, next) => {
 
     try {
-        const audio = req.body.audio;
+        const audio = req.file;
 
-        const result = await cloudinary.v2.uploader.upload(audio, {
-                resource_type: "auto",
-                folder: 'estore/products'
-            });
+        const fileStream = fs.createReadStream(audio.path)
 
-            res.status(201).json({
-                success: true,
-                result
-            })
+        const result = s3.putObject({
+            Bucket: bucketName,
+            Body: fileStream,
+            Key: "Turn Your eyes"
+        }).promise()
+
+        res.status(201).json({
+            success: true,
+            result: result
+        })
 
 
     } catch (error) {
