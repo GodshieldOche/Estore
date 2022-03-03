@@ -215,7 +215,7 @@ const NewProduct = () => {
                 </button>
             </form> */}
 
-        </div>
+        </div> 
     )
 }
 
