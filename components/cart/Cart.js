@@ -19,7 +19,7 @@ const Cart = () => {
 
     useEffect(() => {
         dispatch(getCartItems())
-    }, [ reload])
+    }, [dispatch, reload])
 
     const truncate = (name) => {
         if (name.length > 18) {
