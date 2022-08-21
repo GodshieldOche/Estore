@@ -303,11 +303,7 @@ const Products = () => {
                     }
                     
 {/* <!-- Products grid --> */}
-                    {loading ?
-                        <div className="flex flex-col items-center justify-center">
-                            <TailSpin color="#00BFFF" height={80} width={80} />
-                        </div>
-                        : products && products.length >= 0 ?
+                    { products && products.length >= 0 ?
                         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-4 p-2  max-w-screen-lg mx-auto ">
                         {
                              products.map(product => (

@@ -25,10 +25,10 @@ export const postOrder = createAsyncThunk(
 
 export const getOrderDetails = createAsyncThunk(
     `order/getOrderDetails`,
-    async ({ req, id }, { rejectWithValue }) => {
-        const { origin } = absoluteUrl(req)
+    async ({ id }, { rejectWithValue }) => {
+        // const { origin } = absoluteUrl(req)
         try {
-            const { data } = await axios.get(`${origin}/api/order/${id}`)
+            const { data } = await axios.get(`/api/order/${id}`)
             return data
         } catch (error) {
             return rejectWithValue(error.response.data.message)

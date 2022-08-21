@@ -7,6 +7,7 @@ import { useRouter } from 'next/router'
 import Link from "next/link"
 import CheckOutSteps from "../cart/CheckOutSteps"
 import CreditCardIcon from '@mui/icons-material/CreditCard';
+import Image from "next/image"
 
 const Order = () => {
     const [address, setAddress] = useState('')
@@ -21,19 +22,21 @@ const Order = () => {
 
     useEffect(() => {
 
-        dispatch(getCartItems())
-
-        dispatch(getShippingAddress()).then(result => {
-            if (!result.error) {
-                const { shippingAddress } = result.payload
-                setAddress(shippingAddress.address)
-                setCity(shippingAddress.city)
-                setPostalCode(shippingAddress.postalCode)
-                setCountry(shippingAddress.country)
-            } else {
-                console.log(result)
-            }
+        dispatch(getCartItems()).then(res => {
+            dispatch(getShippingAddress()).then(result => {
+                if (!result.error) {
+                    const { shippingAddress } = result.payload
+                    setAddress(shippingAddress.address)
+                    setCity(shippingAddress.city)
+                    setPostalCode(shippingAddress.postalCode)
+                    setCountry(shippingAddress.country)
+                } else {
+                    console.log(result)
+                }
+            })
         })
+
+        
 
 
     }, [dispatch])
@@ -93,11 +96,14 @@ const Order = () => {
 
                                     return (
                                         <div key={item._id} className="grid grid-cols-12 gap-1 justify-center items-center px-1 py-2 md:px-3">
-                                            <div className=" col-span-2 w-[50px] h-[30px] md:w-[100px] md:h-[60px]  ">
-                                                <img
+                                            <div className="relative col-span-2 w-[50px] h-[30px] md:w-[100px] md:h-[60px]  ">
+                                                <Image
                                                     src={item.productId?.images[0]?.url}
                                                     alt={item.productId?.name}
                                                     className="rounded-lg object-cover w-full h-full"
+                                                    layout="fill"
+                                                    blurDataURL="data:..."
+                                                    placeholder="blur"
                                                 />
                                             </div>
                                             <div className="col-span-7">

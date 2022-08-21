@@ -4,9 +4,9 @@ import { useSelector } from "react-redux"
 import ProductsList from "./products/ProductsList"
 import FilterListIcon from '@mui/icons-material/FilterList';
 
-const Home = () => {
+const Home = ({ products }) => {
 
-    const { loading, products, message } = useSelector(state => state.latestProducts)
+    // const { loading, products, message } = useSelector(state => state.latestProducts)
     return (
         <div className="md:!mt-16 !mt-24">
             <section>

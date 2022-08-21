@@ -3,7 +3,7 @@ import CheckOutSteps from "../cart/CheckOutSteps"
 import CreditCardIcon from '@mui/icons-material/CreditCard';
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { postOrder, postUpdatePaid } from "../../redux/features/order";
+import { getOrderDetails, postUpdatePaid } from "../../redux/features/order";
 import { useRouter } from "next/router";
 import { toast } from 'react-toastify';
 import { TailSpin } from 'react-loader-spinner'
@@ -14,31 +14,38 @@ const Pay = () => {
     const { loading, order, message } = useSelector(state => state.order)
     const dispatch = useDispatch()
     const router = useRouter()
+    const {id} = router.query
 
    
     const reference = router.query.reference
     console.log(reference)
 
+
+    useEffect(() => {
+    }, [id])
+
     useEffect(() => {
         if (reference) {
-            dispatch(verifyPayment({ reference })).then(result => {
-                
-                const orderId = order._id
-                const id = result.payload.data.id
-                const status = result.payload.data.status
-                const updateTime = result.payload.data.createdAt
-                const emailAddress = result.payload.data.customer.email
+            dispatch(getOrderDetails({ id })).then(res => {
+                dispatch(verifyPayment({ reference })).then(result => {
 
-                
-                dispatch(postUpdatePaid({ orderId, id, status, updateTime, emailAddress })).then(result => {
-                    toast.success("Payment Successful")
+                    const orderId = order._id
+                    const id = result.payload.data.id
+                    const status = result.payload.data.status
+                    const updateTime = result.payload.data.createdAt
+                    const emailAddress = result.payload.data.customer.email
+
+
+                    dispatch(postUpdatePaid({ orderId, id, status, updateTime, emailAddress })).then(result => {
+                        toast.success("Payment Successful")
+                    })
                 })
             })
         } 
       
 
 
-    }, [])
+    }, [reference])
 
     const truncate = (name) => {
         if (name?.length > 19) {
@@ -51,7 +58,8 @@ const Pay = () => {
     const handlePay = () => {
         const email = order?.user?.email
         const amount = (order?.totalPrice * 100).toFixed(0)
-        const callback_url = `https://estore-two.vercel.app/order/${order?._id}`
+        // const callback_url = `https://estore-five.vercel.app/order/${order?._id}`
+        const callback_url = `http://localhost:3000/order/${order?._id}`
 
         dispatch(postPayStack({email, amount, callback_url })).then(result => {
             if (!result.error) {

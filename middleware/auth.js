@@ -1,5 +1,10 @@
 import { getSession } from 'next-auth/react'
 
+const grapqlContext = async ({req, res}) => {
+    const session = await getSession({req})
+
+    return { session };
+}
 
 const isAuthenticatedUser = async (req, res, next) => {
     try {
@@ -34,5 +39,6 @@ const authorizeRoles = (...roles) => {
 
 export {
     isAuthenticatedUser,
-    authorizeRoles
+    authorizeRoles,
+    grapqlContext
 }

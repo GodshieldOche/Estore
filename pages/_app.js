@@ -4,15 +4,19 @@ import Layout from "../components/layout/Layout";
 import { wrapper } from '../redux/store'
 import NextNprogress from 'nextjs-progressbar';
 import Script from 'next/script'
+import { ApolloProvider } from '@apollo/client';
+import client from '../apollo-client'
 
 
 function MyApp({ Component, pageProps }) {
   return (
-    <Layout>
-      <NextNprogress />
-      <Script src="https://cdn.jsdelivr.net/npm/tw-elements/dist/js/index.min.js"></Script>
-      <Component {...pageProps} />
-    </Layout>
+    <ApolloProvider client={client}>
+      <Layout>
+        <NextNprogress />
+        <Script src="https://cdn.jsdelivr.net/npm/tw-elements/dist/js/index.min.js"></Script>
+        <Component {...pageProps} />
+      </Layout>
+    </ApolloProvider>
   )
 }
 

@@ -7,6 +7,7 @@ import { getCartItems, postDeleteItem, postToCart } from '../../redux/features/c
 import Link from 'next/link'
 import { TailSpin } from 'react-loader-spinner'
 import { toast } from 'react-toastify';
+import Image  from "next/image"
 
 
 const Cart = () => {
@@ -90,11 +91,14 @@ const Cart = () => {
 
                                 return (
                                     <div key={item._id} className="grid grid-cols-12 gap-2 bg-gray-900 items-center border border-white/30 px-1 py-2 md:px-3">
-                                        <div className=" col-span-2 w-[50px] h-[30px] md:w-[100px] md:h-[60px]  ">
-                                            <img
+                                        <div className="relative col-span-2 w-[50px] h-[30px] md:w-[100px] md:h-[60px]  ">
+                                            <Image
                                                 src={item.productId?.images[0]?.url}
                                                 alt={item.productId?.name}
                                                 className="rounded-lg object-cover w-full h-full"
+                                                layout="fill"
+                                                blurDataURL="data:..."
+                                                placeholder="blur"
                                             />
                                         </div>
                                         <div className="col-span-5">

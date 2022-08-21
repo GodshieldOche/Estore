@@ -31,9 +31,11 @@ const Details = () => {
 
     useEffect(() => {
         setDisplayImage(product?.images[0].url)
-        dispatch(getCartItems())
-        dispatch(getProductReviews(prodId))
-    }, [dispatch, showCart])
+        dispatch(getCartItems()).then(res => {
+            dispatch(getProductReviews(prodId))
+        })
+        
+    }, [dispatch, prodId, showCart])
 
     
     const inCart = cartItems.find(item => item.productId._id === prodId)

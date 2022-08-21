@@ -8,6 +8,8 @@ import ReviewModal from './ReviewModal';
 import { toast } from 'react-toastify';
 import { TailSpin } from 'react-loader-spinner'
 import { useState } from 'react';
+import Image from "next/image"
+
 
 const Reviews = () => {
 
@@ -74,8 +76,14 @@ const Reviews = () => {
                             return (
                                 <div key={item?.item._id} className="grid grid-cols-12 items-start gap-2 p-1 sm:p-2 border border-white/20">
                                     <div className="col-span-2">
-                                        <div className="border border-white/20 h-[50px] lg:h-[80px]">
-                                            <img src={item?.item?.productId?.images[0].url} className="w-full h-full object-cover" />
+                                        <div className="relative border border-white/20 h-[50px] lg:h-[80px]">
+                                            <Image
+                                                src={item?.item?.productId?.images[0].url}
+                                                className=" object-cover w-full h-full"
+                                                layout="fill"
+                                                blurDataURL="data:..."
+                                                placeholder="blur"
+                                            />
                                         </div>
 
                                     </div>
