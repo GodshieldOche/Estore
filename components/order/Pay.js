@@ -14,39 +14,30 @@ const Pay = () => {
     const { loading, order, message } = useSelector(state => state.order)
     const dispatch = useDispatch()
     const router = useRouter()
-    const {id} = router.query
+    const { id, reference } = router.query
+    
 
-   
-    const reference = router.query.reference
-    console.log(reference)
 
 
     useEffect(() => {
-        dispatch(getOrderDetails({ id }))
-    }, [id])
-
-    useEffect(() => {
-        if (reference) {
-            dispatch(getOrderDetails({ id })).then(res => {
+        dispatch(getOrderDetails({ id })).then(res => {
+            console.log(res?.payload?.order._id)
+            const orderId = res?.payload?.order._id
+            if (reference) {
                 dispatch(verifyPayment({ reference })).then(result => {
-
-                    const orderId = order._id
                     const id = result.payload.data.id
                     const status = result.payload.data.status
                     const updateTime = result.payload.data.createdAt
                     const emailAddress = result.payload.data.customer.email
-
-
                     dispatch(postUpdatePaid({ orderId, id, status, updateTime, emailAddress })).then(result => {
                         toast.success("Payment Successful")
                     })
                 })
-            })
-        } 
-      
+            }
 
+        })
 
-    }, [reference])
+    }, [id])
 
     const truncate = (name) => {
         if (name?.length > 19) {
@@ -160,19 +151,19 @@ const Pay = () => {
                                 </div>
                                 <div className="flex justify-between items-center border-b border-white/30 p-2 lg:p-4">
                                     <h1 className="text-sm md:text-base uppercase font-light">Items Price:</h1>
-                                    <h1 className="text-sm md:text-base font-light">{`$${order?.itemsPrice.toFixed(2)}`}</h1>
+                                    <h1 className="text-sm md:text-base font-light">{`$${order?.itemsPrice.toFixed(2) || 0.00}`}</h1>
                                 </div>
                                 <div className="flex justify-between items-center border-b border-white/30 p-2 lg:p-4">
                                     <h1 className="text-sm md:text-base uppercase font-light">Shipping Fee:</h1>
-                                    <h1 className="text-sm md:text-base">{`$${order?.shippingFee.toFixed(2)}`}</h1>
+                                    <h1 className="text-sm md:text-base">{`$${order?.shippingFee.toFixed(2) || 0.00}`}</h1>
                                 </div>
                                 <div className="flex justify-between items-center border-b border-white/30 p-2 lg:p-4">
                                     <h1 className="text-sm md:text-base uppercase font-light">Tax Price:</h1>
-                                    <h1 className="text-sm md:text-base font-light">{`$${order?.taxPrice.toFixed(2)}`}</h1>
+                                    <h1 className="text-sm md:text-base font-light">{`$${order?.taxPrice.toFixed(2) || 0.00}`}</h1>
                                 </div>
                                 <div className="flex justify-between items-center border-b border-white/30 p-2 lg:p-4">
                                     <h1 className="text-sm md:text-base uppercase font-light">Total Price:</h1>
-                                    <h1 className="text-sm md:text-base font-light">{`$${order?.totalPrice.toFixed(2)}`}</h1>
+                                    <h1 className="text-sm md:text-base font-light">{`$${order?.totalPrice.toFixed(2) || 0.00}`}</h1>
                                 </div>
                                 <div className={`${order?.isPaid ? "hidden" : "flex" } justify-center cursor-pointer items-center bg-[#FFA801] border-b border-white/30 py-2 lg:p-4`}
                                     onClick={handlePay}
