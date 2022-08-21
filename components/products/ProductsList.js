@@ -5,8 +5,8 @@ import Image from "next/image"
 const ProductsList = ({ product }) => {
 
     const truncate = (name) => {
-        if (name.length > 18) {
-            return name.substr(0, 17) + "..."
+        if (name.length > 20) {
+            return name.substr(0, 19) + "..."
         } else {
             return name
         }
