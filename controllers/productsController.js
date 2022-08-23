@@ -165,7 +165,7 @@ const getLatest = async (req, res, next) => {
 
         const products = await Product.find()
             .sort({createdAt: -1})
-            .limit(4);
+            .limit(5);
             res.status(200).json({
                 success: true,
                 products

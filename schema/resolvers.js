@@ -11,7 +11,7 @@ const resolvers = {
             return users
         },
         latestProducts: async (_parent, _args, _context) => { 
-            const products = await Product.find().sort('-createdAt').limit(4)
+            const products = await Product.find().sort('-createdAt').limit(5)
             return products
         },
         products: async (_parent, _args, _context) => { 
