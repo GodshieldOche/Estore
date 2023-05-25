@@ -15,7 +15,7 @@ const Home = ({ products }) => {
                     <div className=" flex lg:flex-1 flex-col space-y-8">
                         <h3 className=" text-center text-[12px] sm:text-[18px] lg:text-base text-[#9EE9E9] tracking-custom lg:text-left leading-3"> RELIABILITY AND QUICK DELIVERY </h3>
                         <h1 className=" text-center text-[15px] sm:text-[25px] md:text-[30px] lg:text-[35px] xl:text-[40px] tracking-custom lg:text-left">
-                            WE OFFER HIGH QUALITY AND DURABLE PRODUCTS ACROSS THE WORLD, FROM THE BEST SELLERS.
+                            WE OFFER HIGH QUALITY AND DURABLE PRODUCTS ACROSS THE CAMPUS, FROM THE BEST SELLERS.
                         </h1>
                         <h4 className="text-[#9EE9E9] text-[11px] sm:text-base ml-5 tracking-custom">Scroll down</h4>
                     </div>
