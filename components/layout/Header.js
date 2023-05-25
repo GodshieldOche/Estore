@@ -55,7 +55,7 @@ const Header = () => {
             <nav className="hidden  md:flex container items-center  mt-4 mb-2 justify-between">
 
                 <div className="flex cursor-pointer ">
-                    <Link href="/"><a><h1 className="text-[#9ee9e9] font-Quintessential text-[30px] ">EStore</h1></a></Link>
+                    <Link href="/"><a><h1 className="text-[#9ee9e9] font-Quintessential text-[30px] ">UniMart</h1></a></Link>
                 </div>
 
                 <Link href="/products">
@@ -137,7 +137,7 @@ const Header = () => {
 
             <nav className="md:hidden  container flex items-center mb-1  mt-2 justify-between">
                 <div className=" cursor-pointer ">
-                    <Link href="/"><a><h1 className="text-[#9ee9e9] !font-Quintessential !text-2xl ">EStore</h1></a></Link>
+                    <Link href="/"><a><h1 className="text-[#9ee9e9] !font-Quintessential !text-2xl ">UniMart</h1></a></Link>
                 </div>
 
                 <div className="flex items-center space-x-6 sm:space-x-10">
